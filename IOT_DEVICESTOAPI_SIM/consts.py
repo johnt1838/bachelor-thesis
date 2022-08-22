@@ -1,4 +1,4 @@
-'''Hard coded CONSTANTS '''
+"""Hard coded CONSTANTS """
 
 
 URL_RAW = 'http://127.0.0.1:8000/data/patient_entries/'

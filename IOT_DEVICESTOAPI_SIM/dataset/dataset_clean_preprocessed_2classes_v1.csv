@@ -1,4 +1,4 @@
-GENDER,AGE,RACE/ETHNICITY,Diagnosis,MD,EMR,LOS,A,B,C,D,E,F,G,I,K,L,M,O,P,R,T,U,Y,Z,AA,AB,AC,AD,#Psychotropic Medications
+GENDER,AGE,RACE_ETHNICITY,Diagnosis,MD,Assignment,EMR,LOS,RAR,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,AA,AB,AC,AD,PsychotropicMedications,Administrations,TherapeuticGuidances
 F,49,W,"MDD, Recurrent",L,C,70,2,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,1,0,0,3
 F,21,W,"MDD, Recurrent",A,C,309,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,13,0,0,0,0,0,3
 M,28,L,"MDD, Single Episode",I,C,376,0,0,0,0,0,0,0,0,0,0,6,0,5,26,0,0,0,15,0,4,0,0,6

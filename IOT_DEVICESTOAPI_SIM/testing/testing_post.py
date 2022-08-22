@@ -1,11 +1,11 @@
-'''Testing File'''
+"""Testing File"""
 
 import pandas as pd
 import requests
 import json
 
 # CUSTOM
-import consts as cc
+from IOT_DEVICESTOAPI_SIM import consts as cc
 
 
 def post_10(df):
@@ -15,7 +15,7 @@ def post_10(df):
 
     df = df.iloc[[0, 96]]
     print(df)
-    # r = requests.get(url=cc.URL_RAW,headers=cc.HEADERS_POST)
+    r = requests.get(url=cc.URL_RAW, headers=cc.HEADERS_POST)
 
     # print(r.status_code)
     # json = r.json()
@@ -71,3 +71,29 @@ def post_10(df):
     #         r = requests.post(cc.URL_RAW, data=json.dumps(data_json_post), headers=cc.HEADERS_POST)
 
 
+def dataset_for_use(df):
+    x = df['Diagnosis'].value_counts()
+    diagnosis_list = []
+    dict_diag = {}
+    i = 1
+    for diagnosis, value in x.items():
+        if value >= 50:
+            # keep diagnosis's with high frequency
+            diagnosis_list.append(diagnosis)
+            dict_diag[f'{i}'] = {diagnosis: value}
+        i = i + 1
+    df = df[df['Diagnosis'].isin(diagnosis_list)]
+    df = df.replace('MDD, Recurrent, Severe Without Psychotic Features', 'MDD, Recurrent')
+    # df = df.replace('Depressive Disorder NOS', )
+    df = df.replace('MDD, Single Episode,Severe Without Psychotic Features', 'MDD, Single Episode')
+    # df = df.replace('MDD', )
+    df = df.replace('MDD, Single Episode, Severe With Psychotic Features', 'MDD, Single Episode')
+    df = df.replace('MDD, Recurrent, Severe With Psychotic Features', 'MDD, Recurrent')
+    df = df[df['Diagnosis'] != 'MDD']
+    df = df[df['Diagnosis'] != 'Depressive Disorder NOS']
+
+    # Save to file
+    save_url = 'dataset/dataset_patient_entries_raw_2classes.csv'
+    saving = df.to_csv(save_url, index=False)
+
+    # return save_url
