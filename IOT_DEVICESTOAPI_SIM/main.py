@@ -1,7 +1,7 @@
 '''
-Main IoT Simulation
-Description: It Simulates the devices pushing patient entries to the REST API
-             (that eventually will be used for feeding the prediction model)
+        Main IoT Simulation
+        Description: It Simulates the devices pushing patient entries to the REST API
+                     (that eventually will be used for feeding the prediction model)
 '''
 import pandas as pd
 

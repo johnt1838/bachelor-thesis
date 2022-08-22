@@ -4,11 +4,6 @@ import threading
 import pandas as pd
 
 
-####
-
-
-####
-
 
 class Device:
     '''
