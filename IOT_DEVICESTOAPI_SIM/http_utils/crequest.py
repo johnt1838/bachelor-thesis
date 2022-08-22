@@ -1,9 +1,26 @@
 import pandas as pd
 import requests
 import json
+import sys
+import os
+import inspect
 
-# CUSTOM
-import consts as cc
+# CUSTOM IMPORT
+import sys
+import os
+sys.path.append('/THESIS/bachelor-thesis/IOT_DEVICESTOAPI_SIM')
+from THESIS.bachelor-thesis.IOT_DEVICESTOAPI_SIM import consts
+#-----------------
+
+
+
+
+
+
+
+
+
+
 
 
 def code200(request):
@@ -58,7 +75,6 @@ def delete_entries_ALL(url):
         if r.status_code != 204:
             print(f'[ERROR-SC]: Status code:{r.status_code}')
 
-
-
-
+def printtt():
+    print(URL_RAW)
 

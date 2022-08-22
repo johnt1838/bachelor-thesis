@@ -1,7 +1,11 @@
 import logging
 import threading
-
 import pandas as pd
+
+# Custom Libraries
+from http_utils import crequest
+
+
 
 
 
@@ -67,6 +71,7 @@ def deviceThread(device):
             A thread for a device
     '''
     logging.info(f'[Thread {device.id}][Device{device.id}]: starting')
+
     logging.info(f'[Thread {device.id}][Device{device.id}]: finishing')
 
 

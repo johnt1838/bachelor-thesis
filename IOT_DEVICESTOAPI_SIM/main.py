@@ -6,10 +6,9 @@
 import pandas as pd
 
 #custom
-from testing import testing_post as test
-from http_utils import crequest
-import consts as cc
 from devices import devicesSimulation
+from http_utils import crequest as re
+
 
 def iotSimulation():
     datalink = './dataset/dataset_patient_enties_raw.csv'
@@ -17,11 +16,11 @@ def iotSimulation():
 
     #------test------
     # test.post_10(df_full)
+    print(re.printtt())
 
 
     # ------device posting--------
-    # devicesSimulation()
-    devicesSimulation(10)
+    # devicesSimulation(10)
 
 
 
