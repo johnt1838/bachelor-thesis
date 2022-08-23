@@ -2,7 +2,7 @@ import pandas as pd
 import requests
 # Custom
 import constants as cc
-
+import preprocessing as pp
 
 
 def init_server():
@@ -11,7 +11,9 @@ def init_server():
     json_data = get_data()
     link = json_to_csv(json_data)
     df = pd.read_csv(link)
-    model = create_model(df)
+    df_preprocessed = pp.preprocess_dataframe(df)
+
+    # model = create_model(df)
 
 
 def get_data():
@@ -36,31 +38,36 @@ def get_data():
             # print(data_line)
             # bigJson.update(data_line)
             bigJson['results'].append(data_line)
-
     return bigJson
 
 
 def json_to_csv(json_data):
     link = "api_dataset.csv"
     columns = list(json_data['results'][0].keys())
+
     f = open(link, "w")
     # 1st line columns
     i = 1
     for column in columns:
         if i != len(columns):
+            f.write(column)
             f.write(',')
-            i+=1
+            i += 1
         else:
+            f.write(column)
             f.write('\n')
 
     for line in json_data['results']:
-        for index_,col in enumerate(columns):
-            f.write(str(line[f'{col}']))
-            if index_ != len(columns)-1:
+        for index_, col in enumerate(columns):
+            if col == 'Diagnosis':
+                f.write('\"{}\"'.format(str(line[f'{col}'])))
+            else:
+                f.write(str(line[f'{col}']))
+            if index_ != len(columns) - 1:
                 f.write(',')
-
         f.write('\n')
     return link
+
 
 def create_model(df):
     pass
