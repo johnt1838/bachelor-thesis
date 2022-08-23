@@ -11,24 +11,19 @@ from testing import testing_post as test
 from IOT_DEVICESTOAPI_SIM import consts as cc
 
 
-
 def iotSimulation():
-    datalink = './dataset/dataset_patient_entries_raw_2classes.csv'
-    df_full = pd.read_csv(datalink)
+    data_link = './dataset/dataset_patient_entries_raw_2classes.csv'
+    df_full = pd.read_csv(data_link)
 
     # ------test------
     # test.post_10(df_full)
     # test.dataset_for_use(df_full)
     # re.delete_entries_all(cc.URL_RAW)
 
-
-    # ------device posting--------
-    devicesSimulation(10)
-
-
+    # ------Actual--------
+    # devicesSimulation(10)
 
 
 if __name__ == '__main__':
     print('|------------------------------|IoT Simulation|------------------------------|\n')
     iotSimulation()
-

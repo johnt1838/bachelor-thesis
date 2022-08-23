@@ -50,7 +50,8 @@ def delete_entries_all(url):
     for object_ in json_['results']:
         id_list.append(object_['id'])
     print(json_['next'])
-    while json_['next'] != None:
+    # from != to not
+    while json_['next'] is not None:
         json_ = get_request(json_['next']).json()
         for object_ in json_['results']:
             id_list.append(object_['id'])

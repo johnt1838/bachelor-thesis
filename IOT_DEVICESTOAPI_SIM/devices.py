@@ -145,8 +145,8 @@ def devicesSimulation(numDevices, debug=False):
     Simulating Devices:
             1. Set big dataset\n
             2. Create devices\n
-            3. Make the devices send data to api\n
-            4.
+            3. Create a thread for each device\n
+            4. Make the devices send data to api\n
     """
     df = pd.read_csv('./dataset/dataset_patient_entries_raw_2classes.csv')
 
