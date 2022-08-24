@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.feature_selection import SelectKBest, chi2
 from sklearn.preprocessing import LabelEncoder
+from featurewiz import featurewiz
 
 
 def preprocess_dataframe(df):
@@ -8,6 +9,12 @@ def preprocess_dataframe(df):
     df = df.dropna()
 
     categorical_cols = data_to_encode(df)
+    dict_of_encoders = create_dictionary_encoder(df, categorical_cols)
+
+    df_encoded = label_encoding(df, dict_of_encoders, categorical_cols, True)
+    print('\n\n\n THis is it \n\n')
+    print(df_encoded)
+    feature_selection(df_encoded)
 
     # feature_selection(df)
 
@@ -37,6 +44,11 @@ def feature_selection(data):
     print(featureScores.nlargest(len(dfcolumns), 'Score'))
 
 
+def feature_selection_featurewiz(data):
+    target = 'Diagnosis'
+    features, train = featurewiz(data, target, corr_limit=0.7, verbose=2, sep=',', header=0, test_data="",
+                                 feature_engg="", category_encoders="")
+
 def data_to_encode(df):
     """
             Takes a dataframe and return the columns that are non numeric (categorical)
@@ -52,8 +64,7 @@ def data_to_encode(df):
 
     return categorical_columns
 
-
-def create_dictionary_encoder(df, columns_to_encode, col):
+def create_dictionary_encoder(df, columns_to_encode):
     """
           Gets an array of specified columns to be a dictionary of encoders
     """
@@ -62,8 +73,11 @@ def create_dictionary_encoder(df, columns_to_encode, col):
         dictionary_of_encoders[col] = LabelEncoder().fit(df[col])
     return dictionary_of_encoders
 
-
 def label_encoding(df, dictionary_of_encoders, categorical_columns, save=False):
+    """
+            Dataset non numerics classes to numerics
+    """
+
     for column in categorical_columns:
         df[column] = dictionary_of_encoders[column].transform(df[column])
 
@@ -71,3 +85,13 @@ def label_encoding(df, dictionary_of_encoders, categorical_columns, save=False):
         save_url = 'api_dataset_encoded.csv'
         saving = df.to_csv(save_url, index=False)
 
+    return df
+
+def label_decoding(df, dictionary_of_encoders, categorical_columns):
+    """
+         Dataset's column class numeric back to non numeric
+    """
+    for col in categorical_columns:
+        df[col] = dictionary_of_encoders[col].inverse_transform(df[col])
+
+    return df
