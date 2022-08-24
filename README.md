@@ -1,4 +1,5 @@
-#Bachelor Thesis Project
+# Bachelor Thesis Project
+
 
 
 
@@ -20,7 +21,7 @@ for model testing purposes.
 
 
 
-##Libraries
+## Libraries
 
 | [Django API](https://github.com/johnt1838/bachelor-thesis/tree/main/API/dataApi) | Command | Description |
 | ----------- | ----------- | ----------- |
