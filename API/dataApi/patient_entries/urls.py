@@ -6,6 +6,11 @@ from patient_entries import views
 router = DefaultRouter()
 router.register(
     r"patient_entries", views.patient_entryViewSet, basename="patient_entries"
+
+)
+router.register(
+    r"patient_entries_test", views.patient_entry_testViewSet, basename="patient_entries_test"
+
 )
 
 # The API URLs are now determined automatically by the router.

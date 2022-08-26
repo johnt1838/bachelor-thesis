@@ -1,11 +1,62 @@
 from rest_framework import serializers
-from .models import patient_entry
+from .models import patient_entry, patient_entry_test
 
 
 class patient_entriesSerializer(serializers.ModelSerializer):
     class Meta:
 
         model = patient_entry
+        fields = [
+            "id",
+            "Gender",
+            "Age",
+            "Race",
+            "Diagnosis",
+            "MD",
+            "Assignment",
+            "EMR",
+            "LOS",
+            "RAR",
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z",
+            "AA",
+            "AB",
+            "AC",
+            "AD",
+            "PsychotropicMedications",
+            "Administrations",
+            "TherapeuticGuidances",
+        ]
+
+
+class patient_entries_testSerializer(serializers.ModelSerializer):
+    class Meta:
+
+        model = patient_entry_test
         fields = [
             "id",
             "Gender",

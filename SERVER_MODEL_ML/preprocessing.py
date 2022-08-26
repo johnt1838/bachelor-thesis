@@ -5,21 +5,34 @@ from featurewiz import featurewiz
 
 
 def preprocess_dataframe(df):
+    print('[Debug] preprocess_dataframe')
     # drop Null / NaN
     df = df.dropna()
+    df = df.drop('id', inplace=False, axis=1)
 
     categorical_cols = data_to_encode(df)
     dict_of_encoders = create_dictionary_encoder(df, categorical_cols)
 
     df_encoded = label_encoding(df, dict_of_encoders, categorical_cols, True)
-    print('\n\n\n THis is it \n\n')
-    print(df_encoded)
-    feature_selection(df_encoded)
 
-    # feature_selection(df)
+    best_columns = feature_selection(df_encoded)
+    best_columns.append('Diagnosis')
+    all_features = df_encoded.columns.tolist()
+    print(all_features)
+    for column in all_features:
+        print(column)
+        if column not in best_columns:
+            print(f'{column} dropped')
+            df_encoded = df_encoded.drop(column, inplace=False, axis=1)
+
+    # featurewiz
+    # df_encoded = feature_selection_featurewiz(df_encoded)
+
+    return df_encoded
 
 
 def feature_selection(data):
+    print('[DEBUG] feature_selection')
     features_best = []
     categorical_columns = []
     num_features_max = 35
@@ -41,14 +54,20 @@ def feature_selection(data):
     featureScores = pd.concat([dfcolumns, dfscores], axis=1)
     featureScores.columns = ['Feature', 'Score']  # naming the dataframe columns
     features_best.append(featureScores.nlargest(num_features_max, 'Score')['Feature'].tolist())
-    print(featureScores.nlargest(len(dfcolumns), 'Score'))
+    x = featureScores.nlargest(20, 'Score')
+
+    best_features = x['Feature'].unique().tolist()
+    return best_features
 
 
 def feature_selection_featurewiz(data):
-    target = 'Diagnosis'
-    features, train = featurewiz(data, target, corr_limit=0.7, verbose=2, sep=',', header=0, test_data="",
-                                 feature_engg="", category_encoders="")
+    print('[DEBUG]- FEATURE WIZ')
+    features = featurewiz(data, target='Diagnosis', corr_limit=0.70,
+                          verbose=2)
+    print(type(features))
 
+
+# Encoding
 def data_to_encode(df):
     """
             Takes a dataframe and return the columns that are non numeric (categorical)
@@ -64,6 +83,7 @@ def data_to_encode(df):
 
     return categorical_columns
 
+
 def create_dictionary_encoder(df, columns_to_encode):
     """
           Gets an array of specified columns to be a dictionary of encoders
@@ -72,6 +92,7 @@ def create_dictionary_encoder(df, columns_to_encode):
     for col in columns_to_encode:
         dictionary_of_encoders[col] = LabelEncoder().fit(df[col])
     return dictionary_of_encoders
+
 
 def label_encoding(df, dictionary_of_encoders, categorical_columns, save=False):
     """
@@ -86,6 +107,7 @@ def label_encoding(df, dictionary_of_encoders, categorical_columns, save=False):
         saving = df.to_csv(save_url, index=False)
 
     return df
+
 
 def label_decoding(df, dictionary_of_encoders, categorical_columns):
     """

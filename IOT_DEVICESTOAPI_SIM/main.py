@@ -21,7 +21,7 @@ def iotSimulation():
     # re.delete_entries_all(cc.URL_RAW)
 
     # ------Actual--------
-    # devicesSimulation(10)
+    devicesSimulation(10)
 
 
 if __name__ == '__main__':
