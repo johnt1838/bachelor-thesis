@@ -1,5 +1,5 @@
 """Testing File"""
-
+import matplotlib.pyplot as plt
 import pandas as pd
 import requests
 import json
@@ -73,16 +73,18 @@ def post_10(df):
 
 def dataset_for_use(df):
     x = df['Diagnosis'].value_counts()
-    diagnosis_list = []
+    diagnosis_list_clean = []
+    diagnosis_list_all = []
     dict_diag = {}
     i = 1
     for diagnosis, value in x.items():
+        diagnosis_list_all.append(diagnosis)
         if value >= 50:
             # keep diagnosis's with high frequency
-            diagnosis_list.append(diagnosis)
+            diagnosis_list_clean.append(diagnosis)
             dict_diag[f'{i}'] = {diagnosis: value}
         i = i + 1
-    df = df[df['Diagnosis'].isin(diagnosis_list)]
+    df = df[df['Diagnosis'].isin(diagnosis_list_clean)]
     df = df.replace('MDD, Recurrent, Severe Without Psychotic Features', 'MDD, Recurrent')
     # df = df.replace('Depressive Disorder NOS', )
     df = df.replace('MDD, Single Episode,Severe Without Psychotic Features', 'MDD, Single Episode')
@@ -96,4 +98,31 @@ def dataset_for_use(df):
     save_url = 'dataset/dataset_patient_entries_raw_2classes.csv'
     saving = df.to_csv(save_url, index=False)
 
+
     # return save_url
+
+if __name__ == '__main__':
+    df = pd.read_csv('C:/Users/Giannis/Desktop/bachelor-thesis/IOT_DEVICESTOAPI_SIM/dataset/dataset_patient_enties_raw.csv')
+    x = df['Diagnosis'].value_counts()
+    diagnosis_list_clean = []
+    diagnosis_list_all = []
+    dict_diag = {}
+    dict_diag_all = {}
+    i = 1
+    for diagnosis, value in x.items():
+        dict_diag_all[f'{i}'] = {diagnosis: value}
+        if value >= 50:
+            # keep diagnosis's with high frequency
+            diagnosis_list_clean.append(diagnosis)
+            dict_diag[f'{i}'] = {diagnosis: value}
+        i = i + 1
+
+    for k, v in dict_diag_all.items():
+        print(str(k) + ': ' + str(v))
+    fig = df['Diagnosis'].value_counts()[:20].plot(kind='bar')
+    # plt.subplots_adjust(bottom=.87, )
+    plt.savefig('myfile.png', bbox_inches="tight")
+
+    plt.show()
+
+

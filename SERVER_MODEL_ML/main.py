@@ -8,16 +8,27 @@
 """
 
 from server import *
+from test_model_api import *
+import os
+
 
 def ServerSimulation():
 
 
     print('[Server Simulation]')
     #---------Testing------------
+    #
     server = init_server()
-
-
     #---------Actual-------------
+
+
+    # x= os.path.exists('ensemble.pickle')
+    # if x:
+    #     loaded_model = pickle.load(open('ensemble.pickle', 'rb'))
+    #     test_model(loaded_model)
+    # else:
+    #     server = init_server()
+
 
 
 

@@ -8,14 +8,11 @@ import json
 import requests
 from http_utils import crequest
 from IOT_DEVICESTOAPI_SIM import consts as cc
+from datetime import datetime
+
 
 
 class Device:
-    """
-        Simulation IoT devices.These devices will have some characteristics and a small portion of data that will be used to
-        simulate the data posting in the "middleman" REST-API.
-    """
-
     def __init__(self, id, data_train, data_test):
         self.id = id
         self.name = f'Patient{id}'
@@ -25,7 +22,10 @@ class Device:
         self.data_test_entries = data_test.shape[0]
 
     def __str__(self):
-        return f'Device:{self.id} | Name:{self.name} | Trainning Entries:{self.data_train_entries} | Test Entries: {self.data_test_entries} '
+        return f'Device:{self.id}' \
+               f' | Name:{self.name} ' \
+               f' | Trainning Entries:{self.data_train_entries} ' \
+               f' | Test Entries: {self.data_test_entries} '
 
     def showTrainData(self):
         print(self.data_train)
@@ -43,7 +43,6 @@ def dataFeeding(numDataframes, dataset, ):
         dataset: Big Dataset
     """
     list_of_datasets = []
-    # ---(97)------------------(970)---------/---(10)
     numEntries = int(len(dataset.index) / numDataframes)
     start = 0
     end = numEntries
@@ -56,8 +55,6 @@ def dataFeeding(numDataframes, dataset, ):
             df = dataset.iloc[start:start + numEntries]
             list_of_datasets.append(df)
     return list_of_datasets
-
-
 def createDevices(numberDevices, dataframe_training, dataframe_testing):
     """
         Creating X numbers of devices.
@@ -68,8 +65,11 @@ def createDevices(numberDevices, dataframe_training, dataframe_testing):
     listDevices = []
     listDatasets_training = dataFeeding(numberDevices, dataframe_training)
     listDatasets_testing = dataFeeding(numberDevices, dataframe_testing)
+    print(f'Creating Devices:')
     for i in range(1, numberDevices + 1):
         listDevices.append(Device(i, listDatasets_training[i - 1], listDatasets_testing[i - 1]))
+        print(f'Device-{i}  was successfully created.')
+
 
     return listDevices
 
@@ -146,59 +146,33 @@ def deviceThread_testing_data(device):
     """
     logging.info(f'[Thread {device.id}-test][Device{device.id}]: starting')
     r = requests.get(url=cc.URL_RAW_DATA_TEST, headers=cc.HEADERS_POST)
-    # print(r.status_code)
     json_ = r.json()
-    # print(json_)
     if r.status_code == 200:
         for index, row in device.data_test.iterrows():
-            # print(f'{index=}')
             data_json_post = {
-                "Gender": row['GENDER'],
-                "Age": row['AGE'],
-                "Race": row['RACE_ETHNICITY'],
-                "Diagnosis": row['Diagnosis'],
-                "MD": row['MD'],
-                "Assignment": row['Assignment'],
-                "EMR": row['EMR'],
-                "LOS": row['LOS'],
-                "RAR": row['RAR'],
-                "A": row['A'],
-                "B": row['B'],
-                "C": row['C'],
-                "D": row['D'],
-                "E": row['E'],
-                "F": row['F'],
-                "G": row['G'],
-                "H": row['H'],
-                "I": row['I'],
-                "J": row['J'],
-                "K": row['K'],
-                "L": row['L'],
-                "M": row['M'],
-                "N": row['N'],
-                "O": row['O'],
-                "P": row['P'],
-                "Q": row['Q'],
-                "R": row['R'],
-                "S": row['S'],
-                "T": row['T'],
-                "U": row['U'],
-                "V": row['V'],
-                "W": row['W'],
-                "X": row['X'],
-                "Y": row['Y'],
-                "Z": row['Z'],
-                "AA": row['AA'],
-                "AB": row['AB'],
-                "AC": row['AC'],
-                "AD": row['AD'],
-                "PsychotropicMedications": row['PsychotropicMedications'],
-                "Administrations": row['Administrations'],
-                "TherapeuticGuidances": row['TherapeuticGuidances']
+                "Gender": row['GENDER'], "Age": row['AGE'],
+                "Race": row['RACE_ETHNICITY'], "Diagnosis": row['Diagnosis'],
+                "MD": row['MD'], "Assignment": row['Assignment'],
+                "EMR": row['EMR'], "LOS": row['LOS'],
+                "RAR": row['RAR'], "A": row['A'],
+                "D": row['D'], "E": row['E'],
+                "F": row['F'], "G": row['G'],
+                "H": row['H'], "I": row['I'],
+                "B": row['B'], "C": row['C'],
+                "J": row['J'], "K": row['K'],
+                "L": row['L'], "M": row['M'],
+                "N": row['N'], "O": row['O'],
+                "P": row['P'], "Q": row['Q'],
+                "R": row['R'], "S": row['S'],
+                "T": row['T'], "U": row['U'],
+                "V": row['V'], "W": row['W'],
+                "X": row['X'], "Y": row['Y'],
+                "Z": row['Z'], "AA": row['AA'],
+                "AB": row['AB'], "AC": row['AC'],
+                "AD": row['AD'], "PsychotropicMedications": row['PsychotropicMedications'],
+                "Administrations": row['Administrations'], "TherapeuticGuidances": row['TherapeuticGuidances']
             }
-            # print(data_json_post)
             r = requests.post(cc.URL_RAW_DATA_TEST, data=json.dumps(data_json_post), headers=cc.HEADERS_POST)
-
     logging.info(f'[Thread {device.id}-test][Device{device.id}]: finishing')
 
 
@@ -213,7 +187,9 @@ def devicesSimulation(numDevices, debug=False):
     df_training = pd.read_csv('./dataset/dataset_patient_entries_raw_2classes.csv')
     df_testing = pd.read_csv('./dataset/dataset_patient_entries_raw_2classes_fotTesting.csv')
 
-    devices = createDevices(numberDevices=numDevices, dataframe_training=df_training, dataframe_testing=df_testing)
+    devices = createDevices(numberDevices=numDevices,
+                            dataframe_training=df_training,
+                            dataframe_testing=df_testing)
 
     if len(devices) < 1:
         print('[DEBUG]: Error number of devices is less than 1')
@@ -221,7 +197,7 @@ def devicesSimulation(numDevices, debug=False):
     if debug:
         for device in devices:
             print(f'[DEVICE{device.id}]: {device}\n')
-            device.showTrainData()
+            # device.showTrainData()
 
     format = "%(asctime)s: %(message)s"
     logging.basicConfig(format=format, level=logging.INFO,

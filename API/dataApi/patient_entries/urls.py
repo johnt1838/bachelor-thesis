@@ -12,7 +12,6 @@ router.register(
     r"patient_entries_test", views.patient_entry_testViewSet, basename="patient_entries_test"
 
 )
-
 # The API URLs are now determined automatically by the router.
 urlpatterns = [
     path("", include(router.urls)),

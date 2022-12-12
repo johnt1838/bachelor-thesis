@@ -4,7 +4,6 @@ from .models import patient_entry, patient_entry_test
 
 class patient_entriesSerializer(serializers.ModelSerializer):
     class Meta:
-
         model = patient_entry
         fields = [
             "id",

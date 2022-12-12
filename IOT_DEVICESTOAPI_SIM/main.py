@@ -4,6 +4,7 @@
                      (that eventually will be used for feeding the prediction model)
 """
 import pandas as pd
+
 # custom
 from devices import devicesSimulation
 from http_utils import crequest as re
@@ -19,9 +20,10 @@ def iotSimulation():
     # test.post_10(df_full)
     # test.dataset_for_use(df_full)
     # re.delete_entries_all(cc.URL_RAW)
+    # re.delete_entries_all(cc.URL_RAW_DATA_TEST)
 
     # ------Actual--------
-    devicesSimulation(10)
+    devicesSimulation(10, debug=True)
 
 
 if __name__ == '__main__':

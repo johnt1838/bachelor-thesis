@@ -12,6 +12,8 @@ COLUMNS_RAW_DATASET = ['GENDER', 'AGE', 'RACE_ETHNICITY', 'Diagnosis', 'MD', 'As
                        'Administrations', 'TherapeuticGuidances']
 HEADERS_POST = {'Content-type': 'application/json', 'Accept': 'application/json'}
 
+URL_DIR_IMPL = 'C:/Users/Giannis/Desktop/ΠΤΥΧΙΑΚΗ/Figures/implementation'
+
 # JSON_RAW_DATA = {
 #     "Gender": "",
 #     "Age": null,

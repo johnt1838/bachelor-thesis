@@ -31,18 +31,18 @@ for model testing purposes.
 
 | [Device Module](https://github.com/johnt1838/bachelor-thesis/tree/main/IOT_DEVICESTOAPI_SIM) | Command | Description |
 | ----------- | ----------- |----------- |
-| Pandas  | ```pip install pandas``` |
-| Threading | ```pip install thread6``` |
-| Requests | ```pip install requests``` |
-| Logging | ```pip install logging``` |
+| Pandas  | ```pip install pandas``` | pandas is a fast, powerful, flexible and easy to use open source data analysis and manipulation tool, built on top of the Python programming language.|
+| Threading | ```pip install thread6``` | A thread is a separate flow of execution. This is used for the simultaneous device execution|
+| Requests | ```pip install requests``` | The requests library is the de facto standard for making HTTP requests in Python|
+| Logging | ```pip install logging``` | |
 
 
 
 | [Server Module](https://github.com/johnt1838/bachelor-thesis/tree/main/SERVER_MODEL_ML) | Command | Description |
 | ----------- | ----------- |-----------|
-| Pandas  | ```pip install pandas``` | |
-| Sklearn  | ```pip install sklearn``` | | 
-| Requests | ```pip install requests``` | | 
+| Pandas  | ```pip install pandas``` | pandas is a fast, powerful, flexible and easy to use open source data analysis and manipulation tool, built on top of the Python programming language.|
+| Sklearn  | ```pip install sklearn``` | Scikit-learn is probably the most useful library for machine learning in Python. The sklearn library contains a lot of efficient tools for machine learning and statistical modeling including classification, regression, clustering and dimensionality reduction| 
+| Requests | ```pip install requests``` |The requests library is the de facto standard for making HTTP requests in Python | 
 |  | ```xxx``` | | 
 |  | ```xxx``` | | 
 |  | ```xxx``` | |

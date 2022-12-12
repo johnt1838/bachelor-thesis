@@ -11,3 +11,7 @@ COLUMNS_RAW_DATASET = ['GENDER', 'AGE', 'RACE_ETHNICITY', 'Diagnosis', 'MD', 'As
                        'Administrations', 'TherapeuticGuidances']
 
 HEADERS = {'Content-type': 'application/json', 'Accept': 'application/json'}
+
+URL_IMAGES = 'C:/Users/Giannis/Desktop/ΠΤΥΧΙΑΚΗ/Figures/implementation/'
+
+
