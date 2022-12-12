@@ -1,8 +1,4 @@
-# Bachelor Thesis Project
-
-
-
-
+># Bachelor Thesis Project
 
 This project was made for my Bachelor thesis.
 
@@ -13,8 +9,7 @@ This project was made for my Bachelor thesis.
 
 
 The project simulates the creation of IoT devices. 
-The devices send data to an api endpoint. The data that is gathered in json format
-will be used by a main model and they will be preproccessed before the trainning.
+X devices send data to an api endpoint. The data that is gathered in json format will be used by a main model and they will be preproccessed before the trainning.
 An addition endpoint will store addition entries that can be used 
 for model testing purposes.
 
@@ -43,12 +38,18 @@ for model testing purposes.
 | Pandas  | ```pip install pandas``` | pandas is a fast, powerful, flexible and easy to use open source data analysis and manipulation tool, built on top of the Python programming language.|
 | Sklearn  | ```pip install sklearn``` | Scikit-learn is probably the most useful library for machine learning in Python. The sklearn library contains a lot of efficient tools for machine learning and statistical modeling including classification, regression, clustering and dimensionality reduction| 
 | Requests | ```pip install requests``` |The requests library is the de facto standard for making HTTP requests in Python | 
-|  | ```xxx``` | | 
-|  | ```xxx``` | | 
-|  | ```xxx``` | |
-|  | ```xxx``` | | 
+
+# Architecture (Greek)
+## 1. General Architecture 
+![General Architecture Image](/architecture/general_architecure_diagram_thesis.drawio.png)
+
+## 2. IoT devices Architecture 
+![IoT devices Architecture ](/architecture/IOTtier_pp.drawio.png)
+
+## 3. Server Architecture 
+![Server Architecture](/architecture/eksipiretitisServerPP.drawio.png)
+
+## 4. Machine Learning Model Architecture
+![Machine Learning Model Architecture](/architecture/ML%20MODELS.drawio.png)
 
 
-
-
-https://www.markdownguide.org/cheat-sheet/
