@@ -2,7 +2,10 @@
 
 This project was made for my Bachelor thesis.
 
-**Name**: 
+**Name**: ΕΥΦΥΗΣ ΔΙΑΧΕΙΡΙΣΗ ΡΟΩΝ ΔΕΔΟΜΕΝΩΝ ΠΟΥ ΠΡΟΕΡΧΟΝΤΑΙ
+ΑΠΟ ΙΟΤ ΣΥΣΚΕΥΕΣ - INTELLIGENT MANAGEMENT OF DATA FLOWS COMING FROM
+IOT DEVICES
+
 
 **Description**:
 
