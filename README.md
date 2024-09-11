@@ -1,8 +1,8 @@
 ># Bachelor Thesis Project
 
-This project was made for my Bachelor thesis.
+This project was created for my Bachelor's thesis in the Department of Computer Science and Telecommunications.
 
-**Name**: ΕΥΦΥΗΣ ΔΙΑΧΕΙΡΙΣΗ ΡΟΩΝ ΔΕΔΟΜΕΝΩΝ ΠΟΥ ΠΡΟΕΡΧΟΝΤΑΙ
+**Title**: ΕΥΦΥΗΣ ΔΙΑΧΕΙΡΙΣΗ ΡΟΩΝ ΔΕΔΟΜΕΝΩΝ ΠΟΥ ΠΡΟΕΡΧΟΝΤΑΙ
 ΑΠΟ ΙΟΤ ΣΥΣΚΕΥΕΣ - INTELLIGENT MANAGEMENT OF DATA FLOWS COMING FROM
 IOT DEVICES
 
@@ -13,8 +13,7 @@ IOT DEVICES
 
 The project simulates the creation of IoT devices. 
 X devices send data to an api endpoint. The data that is gathered in json format will be used by a main model and they will be preproccessed before the trainning.
-An addition endpoint will store addition entries that can be used 
-for model testing purposes.
+An addition endpoint will store addition entries that can be used for model testing purposes. 
 
 
 
